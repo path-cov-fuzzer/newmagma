@@ -42,13 +42,32 @@ if [ ! -z $HARDEN ]; then
 fi
 
 set -x
+
+# WHATWEADD: our fuzzers are based on LLVM17
+if [ "$FUZZER" == "aflplusplus" ]; then
+
 docker build -t "$IMG_NAME" \
     --build-arg fuzzer_name="$FUZZER" \
     --build-arg target_name="$TARGET" \
     --build-arg USER_ID=$(id -u $USER) \
     --build-arg GROUP_ID=$(id -g $USER) \
+    --network=host \
+    $mode_flag $isan_flag $harden_flag \
+    -f "$MAGMA/docker/Dockerfile.llvm17" "$MAGMA"
+
+else
+
+docker build -t "$IMG_NAME" \
+    --build-arg fuzzer_name="$FUZZER" \
+    --build-arg target_name="$TARGET" \
+    --build-arg USER_ID=$(id -u $USER) \
+    --build-arg GROUP_ID=$(id -g $USER) \
+    --network=host \
     $mode_flag $isan_flag $harden_flag \
     -f "$MAGMA/docker/Dockerfile" "$MAGMA"
+
+fi
+
 set +x
 
 echo "$IMG_NAME"
