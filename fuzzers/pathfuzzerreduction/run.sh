@@ -24,10 +24,16 @@ export AFL_DRIVER_DONT_DEFER=1
 # WHATWEADD: solve the /proc/sys/kernel/core_pattern problem
 export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
 # WHATWEADD: pathfuzz relative settings
-export CFG_BIN_FILE="$OUT/${PROGRAM}_cfg.bin"
+export CFG_BIN_FILE="$OUT/afl/${PROGRAM}_cfg.bin"
 export LD_LIBRARY_PATH="$FUZZER/repo/"
 # zekun says 42 is a new algorithm
 export K=42
+
+# copy cfg.txt for debugging purpose
+cp $OUT/afl/cfg_${PROGRAM}.txt $SHARED/cfg_${PROGRAM}.txt 
+cp $OUT/afl/callmap_${PROGRAM}.txt $SHARED/callmap_${PROGRAM}.txt 
+cp $OUT/afl/${PROGRAM}_function_list.txt $SHARED/${PROGRAM}_function_list.txt 
+cp $OUT/afl/${PROGRAM}_cfg.bin $SHARED/${PROGRAM}_cfg.bin
 
 "$FUZZER/repo/afl-fuzz" -s 1234 -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
     $FUZZARGS -- "$OUT/afl/$PROGRAM" $ARGS 2>&1

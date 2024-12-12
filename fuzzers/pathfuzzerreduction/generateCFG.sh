@@ -47,19 +47,20 @@ do
     ./convert
     popd > /dev/null
     mv $OUT/top.bin $OUT/${PROGRAM}_cfg.bin
-    cp $OUT/${PROGRAM}_cfg.bin $SHARED/${PROGRAM}_cfg.bin
+    # cp $OUT/${PROGRAM}_cfg.bin $SHARED/${PROGRAM}_cfg.bin
     echo "after executing convert"
 
-    cp $OUT/cfg_${PROGRAM}.txt $SHARED/cfg_${PROGRAM}.txt 
-    cp $OUT/callmap_${PROGRAM}.txt $SHARED/callmap_${PROGRAM}.txt 
-    cp $OUT/${PROGRAM}_function_list.txt $SHARED/${PROGRAM}_function_list.txt 
+    # we do not have $SHARED this time
+    # cp $OUT/cfg_${PROGRAM}.txt $SHARED/cfg_${PROGRAM}.txt 
+    # cp $OUT/callmap_${PROGRAM}.txt $SHARED/callmap_${PROGRAM}.txt 
+    # cp $OUT/${PROGRAM}_function_list.txt $SHARED/${PROGRAM}_function_list.txt 
 
 done
 
 popd
 
-cp $OUT/bbnum.txt $SHARED/bbnum.txt
-cp $OUT/cfg.txt $SHARED/cfg.txt
+# cp $OUT/bbnum.txt $SHARED/bbnum.txt
+# cp $OUT/cfg.txt $SHARED/cfg.txt
 
 export PROGRAM=$PROGRAMAUX
 
