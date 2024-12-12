@@ -58,8 +58,10 @@ docker build -t "$IMG_NAME" \
 elif [ "$FUZZER" == "pathfuzzerreduction" ] ; then
 
 # WHATWEADD: compile things that cannot be compiled in docker containers --------- start
-STORED_FUZZER=$FUZZER
+export STORED_FUZZER=$FUZZER
 export FUZZER="$MAGMA/fuzzers/$STORED_FUZZER"
+# delete repo
+rm -rf $FUZZER/repo
 # git clone pathfuzzers
 bash $FUZZER/fetch.sh
 # compile libpath_reduction.so

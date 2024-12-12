@@ -5,8 +5,11 @@ export PROGRAMAUX=$PROGRAM
 
 source $TARGET/configrc
 
-g++ -g $FUZZER/repo/fuzzing_support/convert.cpp -o $OUT/convert
 cat $OUT/cfg.txt | grep "BasicBlock: " | wc -l > $OUT/bbnum.txt
+
+pushd $OUT
+export FUZZERAUX=$FUZZER
+export FUZZER=$FUZZER/repo
 
 for each_PROGRAM in "${PROGRAMS[@]}"
 do
@@ -26,6 +29,8 @@ do
 
 done
 
+export FUZZER=$FUZZERAUX
+popd
 
 for each_PROGRAM in "${PROGRAMS[@]}"
 do
@@ -42,18 +47,17 @@ do
     ./convert
     popd > /dev/null
     mv $OUT/top.bin $OUT/${PROGRAM}_cfg.bin
+    cp $OUT/${PROGRAM}_cfg.bin $SHARED/${PROGRAM}_cfg.bin
     echo "after executing convert"
 
-    # cp $OUT/${PROGRAM}_cfg.bin $SHARED/${PROGRAM}_cfg.bin
-
-    # cp $OUT/cfg_${PROGRAM}.txt $SHARED/cfg_${PROGRAM}.txt 
-    # cp $OUT/callmap_${PROGRAM}.txt $SHARED/callmap_${PROGRAM}.txt 
-    # cp $OUT/${PROGRAM}_function_list.txt $SHARED/${PROGRAM}_function_list.txt 
+    cp $OUT/cfg_${PROGRAM}.txt $SHARED/cfg_${PROGRAM}.txt 
+    cp $OUT/callmap_${PROGRAM}.txt $SHARED/callmap_${PROGRAM}.txt 
+    cp $OUT/${PROGRAM}_function_list.txt $SHARED/${PROGRAM}_function_list.txt 
 
 done
 
-# cp $OUT/bbnum.txt $SHARED/bbnum.txt
-# cp $OUT/cfg.txt $SHARED/cfg.txt
+cp $OUT/bbnum.txt $SHARED/bbnum.txt
+cp $OUT/cfg.txt $SHARED/cfg.txt
 
 export PROGRAM=$PROGRAMAUX
 

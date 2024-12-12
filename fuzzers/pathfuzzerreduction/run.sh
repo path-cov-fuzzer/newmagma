@@ -24,7 +24,7 @@ export AFL_DRIVER_DONT_DEFER=1
 # WHATWEADD: solve the /proc/sys/kernel/core_pattern problem
 export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
 # WHATWEADD: pathfuzz relative settings
-export CFG_BIN_FILE="$(pwd)/base64_cfg.bin"
+export CFG_BIN_FILE="$OUT/${PROGRAM}_cfg.bin"
 # zekun says 42 is a new algorithm
 export K=42
 # LD_LIBRARY_PATH is the location of dynamic library
