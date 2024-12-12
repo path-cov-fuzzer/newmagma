@@ -25,6 +25,7 @@ export AFL_DRIVER_DONT_DEFER=1
 export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
 # WHATWEADD: pathfuzz relative settings
 export CFG_BIN_FILE="$OUT/${PROGRAM}_cfg.bin"
+export LD_LIBRARY_PATH="$FUZZER/repo/"
 # zekun says 42 is a new algorithm
 export K=42
 # LD_LIBRARY_PATH is the location of dynamic library
