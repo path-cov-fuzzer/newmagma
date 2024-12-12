@@ -61,7 +61,6 @@ export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
 
 # generate CFG of PROGRAM
 (
-    export OUT="$OUT/afl"
     g++ -I"$FUZZER/repo/fuzzing_support" "$FUZZER/repo/fuzzing_support/convert.cpp" -o "$OUT/convert"
     bash $FUZZER/generateCFG.sh
 )

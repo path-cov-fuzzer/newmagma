@@ -30,7 +30,7 @@ do
 done
 
 export FUZZER=$FUZZERAUX
-popd
+
 
 for each_PROGRAM in "${PROGRAMS[@]}"
 do
@@ -55,6 +55,8 @@ do
     cp $OUT/${PROGRAM}_function_list.txt $SHARED/${PROGRAM}_function_list.txt 
 
 done
+
+popd
 
 cp $OUT/bbnum.txt $SHARED/bbnum.txt
 cp $OUT/cfg.txt $SHARED/cfg.txt
