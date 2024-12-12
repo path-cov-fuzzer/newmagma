@@ -24,6 +24,15 @@ export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
     export OUT="$OUT/afl"
     export LDFLAGS="$LDFLAGS -L$OUT"
 
+    # WHATWEADD: add my own environment variable -------------- start
+    export BBIDFILE="$OUT/bbid.txt"
+    export CALLMAPFILE="$OUT/callmap.txt"
+    export CFGFILE="$OUT/cfg.txt"
+    export AFL_LLVM_CALLER=1
+    export AFL_USE_ASAN=1
+    export LD_LIBRARY_PATH="$FUZZER/repo/"
+    # WHATWEADD: add my own environment variable -------------- end
+
     "$MAGMA/build.sh"
     "$TARGET/build.sh"
 )
@@ -35,6 +44,11 @@ export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
     export LDFLAGS="$LDFLAGS -L$OUT"
     # export CFLAGS="$CFLAGS -DMAGMA_DISABLE_CANARIES"
 
+    # WHATWEADD: add my own environment variable -------------- start
+    export AFL_LLVM_CALLER=1
+    export LD_LIBRARY_PATH="$FUZZER/repo/"
+    # WHATWEADD: add my own environment variable -------------- end
+
     export AFL_LLVM_CMPLOG=1
 
     "$MAGMA/build.sh"
@@ -44,3 +58,11 @@ export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
 # NOTE: We pass $OUT directly to the target build.sh script, since the artifact
 #       itself is the fuzz target. In the case of Angora, we might need to
 #       replace $OUT by $OUT/fast and $OUT/track, for instance.
+
+# generate CFG of PROGRAM
+(
+    export OUT="$OUT/afl"
+    g++ -I"$FUZZER/fuzzing_support" $FUZZER/fuzzing_support/convert.cpp -o $OUT/convert
+    bash $FUZZER/generateCFG.sh
+)
+

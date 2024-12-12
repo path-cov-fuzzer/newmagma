@@ -28,7 +28,7 @@ export CFG_BIN_FILE="$(pwd)/base64_cfg.bin"
 # zekun says 42 is a new algorithm
 export K=42
 # LD_LIBRARY_PATH is the location of dynamic library
-LD_LIBRARY_PATH="$FUZZER/repo/fuzzing_support/path-cov/"
+LD_LIBRARY_PATH="$FUZZER/repo/"
 
 "$FUZZER/repo/afl-fuzz" -s 1234 -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
     $FUZZARGS -- "$OUT/afl/$PROGRAM" $ARGS 2>&1
