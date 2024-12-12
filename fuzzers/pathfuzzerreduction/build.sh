@@ -11,7 +11,6 @@ if [ ! -d "$FUZZER/repo" ]; then
     exit 1
 fi
 
-cd "$FUZZER/repo"
 bash compile_and_install_in_docker.sh
 mkdir -p "$OUT/afl" "$OUT/cmplog"
 

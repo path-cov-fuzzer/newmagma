@@ -44,7 +44,7 @@ fi
 set -x
 
 # WHATWEADD: our fuzzers are based on LLVM17
-if [ "$FUZZER" == "aflplusplus" ]; then
+if [ "$FUZZER" == "aflplusplus" ] || [ "$FUZZER" == "pathfuzzerreduction" ] ; then
 
 docker build -t "$IMG_NAME" \
     --build-arg fuzzer_name="$FUZZER" \
