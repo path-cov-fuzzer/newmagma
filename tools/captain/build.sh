@@ -55,7 +55,7 @@ docker build -t "$IMG_NAME" \
     $mode_flag $isan_flag $harden_flag \
     -f "$MAGMA/docker/Dockerfile.llvm17" "$MAGMA"
 
-if [ "$FUZZER" == "pathfuzzerreduction" ] ; then
+elif [ "$FUZZER" == "pathfuzzerreduction" ] ; then
 
 # WHATWEADD: compile things that cannot be compiled in docker containers --------- start
 STORED_FUZZER=$FUZZER
@@ -74,7 +74,7 @@ docker build -t "$IMG_NAME" \
     --build-arg GROUP_ID=$(id -g $USER) \
     --network=host \
     $mode_flag $isan_flag $harden_flag \
-    -f "$MAGMA/docker/Dockerfile.llvm17" "$MAGMA"
+    -f "$MAGMA/docker/Dockerfile.llvm17.path" "$MAGMA"
 
 else
 
