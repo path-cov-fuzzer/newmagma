@@ -25,6 +25,12 @@ export AFL_DRIVER_DONT_DEFER=1
 export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
 
 "$FUZZER/repo/afl-fuzz" -s 1234 -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
-    $FUZZARGS -- "$OUT/afl/$PROGRAM" $ARGS 2>&1
+    $FUZZARGS -M Master -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
+
+"$FUZZER/repo/afl-fuzz" -s 1234 -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+    $FUZZARGS -S Slave1 -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
+
+"$FUZZER/repo/afl-fuzz" -s 1234 -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+    $FUZZARGS -S Slave2 -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
 #     "${flag_cmplog[@]}" -d \
