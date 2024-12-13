@@ -44,6 +44,8 @@ cp $OUT/afl/${PROGRAM}_cfg.bin $SHARED/${PROGRAM}_cfg.bin
 "$FUZZER/repo/afl-fuzz" -s 1234 -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
     $FUZZARGS -S Slave2 -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
+sleep $TIMEOUT
+pkill afl-fuzz
  
 
 

@@ -44,7 +44,8 @@ fi
 set -x
 
 # WHATWEADD: our fuzzers are based on LLVM17
-if [ "$FUZZER" == "aflplusplus" ] ; then
+# fuzzers which does not need path_reduction
+if [ "$FUZZER" == "aflplusplus" ] || [ "$FUZZER" == "onlyinstrument" ]; then
 
 docker build -t "$IMG_NAME" \
     --build-arg fuzzer_name="$FUZZER" \
@@ -55,7 +56,8 @@ docker build -t "$IMG_NAME" \
     $mode_flag $isan_flag $harden_flag \
     -f "$MAGMA/docker/Dockerfile.llvm17" "$MAGMA"
 
-elif [ "$FUZZER" == "pathfuzzerreduction" ] ; then
+# fuzzers which need path_reduction comes below branch
+elif [ "$FUZZER" == "pathfuzzerreduction" ]; then
 
 # WHATWEADD: compile things that cannot be compiled in docker containers --------- start
 export STORED_FUZZER=$FUZZER
