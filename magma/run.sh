@@ -68,6 +68,7 @@ done &
 
 echo "Campaign launched at $(date '+%F %R')"
 
+export TIMEOUT=$TIMEOUT
 timeout $TIMEOUT "$FUZZER/run.sh" | \
     multilog n2 s$LOGSIZE "$SHARED/log"
 
