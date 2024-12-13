@@ -119,7 +119,7 @@ start_campaign()
             mutex $MUX_TAR \
 	      echo "we do not do tar job!!!"
               # tar -cf "${CAMPAIGN_ARDIR}/${ARCID}/${TARBALL_BASENAME}.tar" -C "$SHARED" . &>/dev/null && \
-            rm -rf "$SHARED"
+            # rm -rf "$SHARED"
         else
             # overwrites empty $ARCID directory with the $SHARED directory
             mv -T "$SHARED" "${CAMPAIGN_ARDIR}/${ARCID}"
