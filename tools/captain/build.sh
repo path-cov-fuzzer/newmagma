@@ -57,7 +57,7 @@ docker build -t "$IMG_NAME" \
     -f "$MAGMA/docker/Dockerfile.llvm17" "$MAGMA"
 
 # fuzzers which need path_reduction comes below branch
-elif [ "$FUZZER" == "pathfuzzerreduction" ] || [ "$FUZZER" == "fixversion" ]; then
+elif [ "$FUZZER" == "pathfuzzerreduction" ] || [ "$FUZZER" == "fixversion" ] || [ "$FUZZER" == "fxnotailopt" ]; then
 
 # WHATWEADD: compile things that cannot be compiled in docker containers --------- start
 export STORED_FUZZER=$FUZZER
