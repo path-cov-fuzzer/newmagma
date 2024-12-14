@@ -10,7 +10,7 @@ autoconf
 for file in config.guess config.sub
 do
     echo "$0: getting $file..."
-    wget -q --timeout=5 -O config/$file.tmp \
+    wget -q --timeout=60 -O config/$file.tmp \
       "https://git.savannah.gnu.org/cgit/config.git/plain/${file}" \
       && mv config/$file.tmp config/$file \
       && chmod a+x config/$file
