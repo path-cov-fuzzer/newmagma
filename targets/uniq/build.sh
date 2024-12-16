@@ -10,3 +10,5 @@ make clean
 make -j $(nproc)
 cd ..
 
+cp src/uniq $OUT/uniq
+

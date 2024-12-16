@@ -10,3 +10,5 @@ make clean
 make -j $(nproc) 
 cd ..
 
+cp src/md5sum $OUT/md5sum
+

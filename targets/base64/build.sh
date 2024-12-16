@@ -9,5 +9,7 @@ make clean
 # make -j $(nproc) &> /dev/null
 make -j $(nproc)
 
+cp src/base64 $OUT/base64
+
 cd ..
 
