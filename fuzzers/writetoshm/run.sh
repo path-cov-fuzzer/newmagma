@@ -35,13 +35,13 @@ cp $OUT/afl/callmap_${PROGRAM}.txt $SHARED/callmap_${PROGRAM}.txt
 cp $OUT/afl/${PROGRAM}_function_list.txt $SHARED/${PROGRAM}_function_list.txt 
 cp $OUT/afl/${PROGRAM}_cfg.bin $SHARED/${PROGRAM}_cfg.bin
 
-"$FUZZER/repo/afl-fuzz" -s 1234 -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+"$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
     $FUZZARGS -M Master -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
-"$FUZZER/repo/afl-fuzz" -s 1234 -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+"$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
     $FUZZARGS -S Slave1 -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
-"$FUZZER/repo/afl-fuzz" -s 1234 -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+"$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
     $FUZZARGS -S Slave2 -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
 sleep $TIMEOUT
