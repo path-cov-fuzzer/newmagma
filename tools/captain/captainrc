@@ -78,8 +78,8 @@ FUZZERS=(aflplusplus fixversion)
 # (default: all targets)
 # afl_TARGETS=(libpng libtiff libxml2)
 
-aflplusplus_TARGETS=(base64 md5sum uniq who)
-fixversion_TARGETS=(base64 md5sum uniq who)
+aflplusplus_TARGETS=(md5sum)
+fixversion_TARGETS=(md5sum)
 
 # [fuzzer_target_PROGRAMS]: an array of program names (from
 # magma/targets/target/configrc) to use as execution drivers when fuzzing the
