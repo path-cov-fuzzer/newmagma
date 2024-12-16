@@ -117,8 +117,9 @@ start_campaign()
         if [ -z $NO_ARCHIVE ]; then
             # only one tar job runs at a time, to prevent out-of-storage errors
             mutex $MUX_TAR \
-              tar -cf "${CAMPAIGN_ARDIR}/${ARCID}/${TARBALL_BASENAME}.tar" -C "$SHARED" . &>/dev/null && \
-            rm -rf "$SHARED"
+	      echo "we do not do tar job!!!"
+              # tar -cf "${CAMPAIGN_ARDIR}/${ARCID}/${TARBALL_BASENAME}.tar" -C "$SHARED" . &>/dev/null && \
+            # rm -rf "$SHARED"
         else
             # overwrites empty $ARCID directory with the $SHARED directory
             mv -T "$SHARED" "${CAMPAIGN_ARDIR}/${ARCID}"

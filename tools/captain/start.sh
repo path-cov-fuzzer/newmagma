@@ -51,6 +51,7 @@ if [ ! -z "$SHARED" ]; then
     flag_volume="--volume=$SHARED:/magma_shared"
 fi
 
+set -x
 if [ -t 1 ]; then
     docker run -it $flag_volume \
         --cap-add=SYS_PTRACE --env=PROGRAM="$PROGRAM" --env=ARGS="$ARGS" \
@@ -61,7 +62,7 @@ else
     docker run -dt $flag_volume \
         --cap-add=SYS_PTRACE --env=PROGRAM="$PROGRAM" --env=ARGS="$ARGS" \
         --env=FUZZARGS="$FUZZARGS" --env=POLL="$POLL" --env=TIMEOUT="$TIMEOUT" \
-        --network=none \
+        --network=host \
         $flag_aff $flag_ep "$IMG_NAME"
     )
     container_id=$(cut -c-12 <<< $container_id)
@@ -70,3 +71,4 @@ else
     exit_code=$(docker wait $container_id)
     exit $exit_code
 fi
+set +x

@@ -25,15 +25,18 @@ mkdir -p "$MONITOR"
 cd "$SHARED"
 
 # prune the seed corpus for any fault-triggering test-cases
-for seed in "$TARGET/corpus/$PROGRAM"/*; do
-    out="$("$MAGMA"/runonce.sh "$seed")"
-    code=$?
-
-    if [ $code -ne 0 ]; then
-        echo "$seed: $out"
-        rm "$seed"
-    fi
-done
+# WHATWEADD: base64, md5sum, uniq and who only have 1 seed. So skip seed-pruning
+if [[ "$TARGET" != *"base64"* ]] && [[ "$TARGET" != *"md5sum"* ]] && [[ "$TARGET" != *"uniq"* ]] && [[ "$TARGET" != *"who"* ]]; then
+    for seed in "$TARGET/corpus/$PROGRAM"/*; do
+        out="$("$MAGMA"/runonce.sh "$seed")"
+        code=$?
+    
+        if [ $code -ne 0 ]; then
+            echo "$seed: $out"
+            rm "$seed"
+        fi
+    done
+fi
 
 shopt -s nullglob
 seeds=("$1"/*)
@@ -68,6 +71,7 @@ done &
 
 echo "Campaign launched at $(date '+%F %R')"
 
+export TIMEOUT=$TIMEOUT
 timeout $TIMEOUT "$FUZZER/run.sh" | \
     multilog n2 s$LOGSIZE "$SHARED/log"
 
