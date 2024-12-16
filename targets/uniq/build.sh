@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export CFLAGS="$CFLAGS -Wno-error=implicit-function-declaration"
+export CXXFLAGS="$CXXFLAGS -Wno-error=implicit-function-declaration"
+
 cd $TARGET/repo
 autoreconf -f -i
 # make clean &> /dev/null
