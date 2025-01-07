@@ -71,7 +71,8 @@ CACHE_ON_DISK=1
 ###
 
 # FUZZERS: an array of fuzzer names (from magma/fuzzers/*) to evaluate
-FUZZERS=(aflplusplus fixversion)
+FUZZERS=(aflplusplus)
+# FUZZERS=(aflplusplus fixversion)
 # FUZZERS=(fixversion)
 
 # [fuzzer_TARGETS]: an array of target names (from magma/targets/*) to fuzz with
@@ -80,7 +81,7 @@ FUZZERS=(aflplusplus fixversion)
 # afl_TARGETS=(libpng libtiff libxml2)
 
 aflplusplus_TARGETS=(base64)
-fixversion_TARGETS=(base64)
+# fixversion_TARGETS=(base64)
 
 # aflplusplus_TARGETS=(libpng libsndfile libtiff)
 # fixversion_TARGETS=(libpng libsndfile libtiff)

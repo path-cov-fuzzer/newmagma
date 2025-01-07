@@ -1,4 +1,4 @@
-PROGRAM="base64"
+PROGRAMS=(base64)
 
 base64_ARGS='-d @@'
 

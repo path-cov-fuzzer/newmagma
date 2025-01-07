@@ -126,11 +126,11 @@ ARG CANARIES_FLAG=${canaries:+-DMAGMA_ENABLE_CANARIES}
 ARG FIXES_FLAG=${fixes:+-DMAGMA_ENABLE_FIXES}
 ARG BUILD_FLAGS="-include ${MAGMA}/src/canary.h ${CANARIES_FLAG} ${FIXES_FLAG} ${ISAN_FLAG} ${HARDEN_FLAG} -g -O0"
 
-ENV CFLAGS ${BUILD_FLAGS}
-ENV CXXFLAGS ${BUILD_FLAGS}
+ENV CFLAGS ${BUILD_FLAGS} -lacl
+ENV CXXFLAGS ${BUILD_FLAGS} -lacl
 # WHATWEADD: two more dynamic libraries: -ljbig -lzstd
-ENV LIBS -l:magma.o -lrt -ljbig -lzstd
-ENV LDFLAGS -L"${OUT}" -g
+ENV LIBS -l:magma.o -lrt -ljbig -lzstd -lacl
+ENV LDFLAGS -L"${OUT}" -g -lacl
 
 RUN ${FUZZER}/instrument.sh
 
