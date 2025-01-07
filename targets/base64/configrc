@@ -1,0 +1,4 @@
+PROGRAM="base64"
+
+base64_ARGS='-d @@'
+
