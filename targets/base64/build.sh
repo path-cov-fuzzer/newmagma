@@ -21,7 +21,6 @@ export LIBSAUX=$LIBS
 
 # configure 
 pushd "$TARGET/repo"
-cd coreutils-8.24-lava-safe
 autoreconf -f -i
 # make clean &> /dev/null
 make clean
