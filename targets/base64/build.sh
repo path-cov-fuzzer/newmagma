@@ -37,7 +37,7 @@ export LIBS=$LIBSAUX
 # compile code
 pushd "$TARGET/repo"
 make clean
-rm src/base64
+# rm src/base64
 export CFLAGS="$CFLAGS -I. -I./lib -Ilib -I./lib -Isrc -I./src -O2 -Wno-error=implicit-function-declaration"
 export CXXFLAGS="$CXXFLAGS -I. -I./lib -Ilib -I./lib -Isrc -I./src -O2 -Wno-error=implicit-function-declaration"
 make -e -j $(nproc)
