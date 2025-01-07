@@ -1,0 +1,4 @@
+PROGRAMS=(md5sum)
+
+md5sum_ARGS='-c @@'
+

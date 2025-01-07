@@ -1,0 +1,4 @@
+PROGRAMS=(uniq)
+
+uniq_ARGS='@@'
+

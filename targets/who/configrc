@@ -1,0 +1,4 @@
+PROGRAMS=(who)
+
+who_ARGS='@@'
+
