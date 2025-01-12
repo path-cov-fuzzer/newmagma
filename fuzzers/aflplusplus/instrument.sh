@@ -24,6 +24,9 @@ export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
     export OUT="$OUT/afl"
     export LDFLAGS="$LDFLAGS -L$OUT"
 
+    export AFL_LLVM_CALLER=1
+    export AFL_USE_ASAN=1
+
     "$MAGMA/build.sh"
     "$TARGET/build.sh"
 )
@@ -35,6 +38,7 @@ export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
     export LDFLAGS="$LDFLAGS -L$OUT"
     # export CFLAGS="$CFLAGS -DMAGMA_DISABLE_CANARIES"
 
+    export AFL_LLVM_CALLER=1
     export AFL_LLVM_CMPLOG=1
 
     "$MAGMA/build.sh"
