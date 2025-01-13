@@ -29,11 +29,13 @@ export LD_LIBRARY_PATH="$FUZZER/repo/"
 # zekun says 42 is a new algorithm
 export K=42
 
-# copy cfg.txt for debugging purpose
-cp $OUT/afl/cfg_${PROGRAM}.txt $SHARED/cfg_${PROGRAM}.txt 
-cp $OUT/afl/callmap_${PROGRAM}.txt $SHARED/callmap_${PROGRAM}.txt 
-cp $OUT/afl/${PROGRAM}_function_list.txt $SHARED/${PROGRAM}_function_list.txt 
-cp $OUT/afl/${PROGRAM}_cfg.bin $SHARED/${PROGRAM}_cfg.bin
+# copy things to $SHARED
+mkdir -p $SHARED/afl
+cp $OUT/afl/$PROGRAM $SHARED/afl/$PROGRAM
+cp $OUT/afl/cfg_${PROGRAM}.txt $SHARED/afl/cfg_${PROGRAM}.txt 
+cp $OUT/afl/callmap_${PROGRAM}.txt $SHARED/afl/callmap_${PROGRAM}.txt 
+cp $OUT/afl/${PROGRAM}_function_list.txt $SHARED/afl/${PROGRAM}_function_list.txt 
+cp $OUT/afl/${PROGRAM}_cfg.bin $SHARED/afl/${PROGRAM}_cfg.bin
 
 "$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
     $FUZZARGS -M Master -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &

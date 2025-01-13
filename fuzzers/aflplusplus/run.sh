@@ -24,6 +24,10 @@ export AFL_DRIVER_DONT_DEFER=1
 # WHATWEADD: solve the /proc/sys/kernel/core_pattern problem
 export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
 
+# copy things to $SHARED
+mkdir -p $SHARED/afl
+cp $OUT/afl/$PROGRAM $SHARED/afl/$PROGRAM
+
 "$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
     $FUZZARGS -M Master -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
