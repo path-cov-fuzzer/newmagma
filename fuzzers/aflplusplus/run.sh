@@ -29,12 +29,15 @@ mkdir -p $SHARED/afl
 cp $OUT/afl/$PROGRAM $SHARED/afl/$PROGRAM
 
 "$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+    	"${flag_cmplog[@]}" -d \
     $FUZZARGS -M Master -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
 "$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+    	"${flag_cmplog[@]}" -d \
     $FUZZARGS -S Slave1 -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
 "$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+    	"${flag_cmplog[@]}" -d \
     $FUZZARGS -S Slave2 -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
 sleep $TIMEOUT

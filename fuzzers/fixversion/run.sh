@@ -38,12 +38,15 @@ cp $OUT/afl/${PROGRAM}_function_list.txt $SHARED/afl/${PROGRAM}_function_list.tx
 cp $OUT/afl/${PROGRAM}_cfg.bin $SHARED/afl/${PROGRAM}_cfg.bin
 
 "$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+    	"${flag_cmplog[@]}" -d \
     $FUZZARGS -M Master -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
 "$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+    	"${flag_cmplog[@]}" -d \
     $FUZZARGS -S Slave1 -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
 "$FUZZER/repo/afl-fuzz" -i "$TARGET/corpus/$PROGRAM" -o "$SHARED/findings" \
+    	"${flag_cmplog[@]}" -d \
     $FUZZARGS -S Slave2 -- "$OUT/afl/$PROGRAM" $ARGS 2>&1 &
 
 sleep $TIMEOUT
