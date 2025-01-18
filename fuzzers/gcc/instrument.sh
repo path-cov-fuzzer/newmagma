@@ -24,6 +24,8 @@ export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
     export OUT="$OUT/afl"
     export LDFLAGS="$LDFLAGS -L$OUT"
 
+	mkdir -p $OUT
+
     export AFL_LLVM_CALLER=1
     export AFL_USE_ASAN=1
 
@@ -37,6 +39,8 @@ export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
     export OUT="$OUT/cmplog"
     export LDFLAGS="$LDFLAGS -L$OUT"
     # export CFLAGS="$CFLAGS -DMAGMA_DISABLE_CANARIES"
+
+	mkdir -p $OUT
 
     export AFL_LLVM_CALLER=1
     export AFL_LLVM_CMPLOG=1
