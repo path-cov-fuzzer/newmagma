@@ -45,7 +45,18 @@ set -x
 
 # WHATWEADD: our fuzzers are based on LLVM17
 # fuzzers which does not need path_reduction
-if [ "$FUZZER" == "aflplusplus" ] || [ "$FUZZER" == "onlyinstrument" ] || [ "$FUZZER" == "writetoshm" ] || [ "$FUZZER" == "pathfuzzerfullpath" ]; then
+if [ "$FUZZER" == "gcc" ]; then
+
+docker build -t "$IMG_NAME" \
+    --build-arg fuzzer_name="$FUZZER" \
+    --build-arg target_name="$TARGET" \
+    --build-arg USER_ID=$(id -u $USER) \
+    --build-arg GROUP_ID=$(id -g $USER) \
+    --network=host \
+    $mode_flag $isan_flag $harden_flag \
+    -f "$MAGMA/docker/Dockerfile.gcc" "$MAGMA"
+
+elif [ "$FUZZER" == "aflplusplus" ] || [ "$FUZZER" == "onlyinstrument" ] || [ "$FUZZER" == "writetoshm" ] || [ "$FUZZER" == "pathfuzzerfullpath" ]; then
 
 docker build -t "$IMG_NAME" \
     --build-arg fuzzer_name="$FUZZER" \
