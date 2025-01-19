@@ -31,4 +31,3 @@ cp $OUT/cmplog/$PROGRAM $SHARED/cmplog/$PROGRAM
 
 echo "Campaign terminated at $(date '+%F %R')"
 
-kill $(jobs -p)
