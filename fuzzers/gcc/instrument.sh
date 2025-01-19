@@ -10,11 +10,11 @@ set -e
 # - env CFLAGS and CXXFLAGS must be set to link against Magma instrumentation
 ##
 
-export CC="gcc"
-export CXX="g++"
+export CC="clang"
+export CXX="clang++"
 export AS="llvm-as"
 
-export LIBS="$LIBS -lc++ -lc++abi $FUZZER/repo/utils/aflpp_driver/libAFLDriver.a"
+export LIBS="$LIBS -lc++ -lc++abi"
 
 # AFL++'s driver is compiled against libc++
 export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
