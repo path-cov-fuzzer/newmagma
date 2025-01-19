@@ -129,12 +129,12 @@ ENV CXXFLAGS ${BUILD_FLAGS} -lacl
 ENV LIBS -l:magma.o -lrt -ljbig -lzstd -lacl
 ENV LDFLAGS -L"${OUT}" -g -lacl
 
-ENTRYPOINT ${FUZZER}/instrument.sh
+RUN ${FUZZER}/instrument.sh
 
 # generate CFG, cmplog-binary and 
 
 # corpus will be filtered in $MAGMA/run.sh
-# ENTRYPOINT "${MAGMA}/run.sh"
+ENTRYPOINT "${MAGMA}/rungcc.sh"
 
 
 
