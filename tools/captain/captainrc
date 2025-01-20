@@ -72,9 +72,9 @@ CACHE_ON_DISK=1
 
 # FUZZERS: an array of fuzzer names (from magma/fuzzers/*) to evaluate
 # FUZZERS=(aflplusplus)
-# FUZZERS=(aflplusplus fixversion)
+FUZZERS=(fixversion)
 # FUZZERS=(fixversion)
-FUZZERS=(gcc)
+# FUZZERS=(clang)
 
 # [fuzzer_TARGETS]: an array of target names (from magma/targets/*) to fuzz with
 # `fuzzer`. The `fuzzer` prefix is a fuzzer listed in the FUZZERS array
@@ -90,7 +90,11 @@ FUZZERS=(gcc)
 # aflplusplus_TARGETS=(base64 md5sum uniq who libpng libsndfile php)
 # fixversion_TARGETS=(base64 md5sum uniq who libpng libsndfile php)
 
-gcc_TARGETS=(base64 md5sum uniq who)
+
+# aflplusplus_TARGETS=(php)
+fixversion_TARGETS=(base64 md5sum uniq who)
+
+# clang_TARGETS=(base64 md5sum uniq who)
 
 # aflplusplus_TARGETS=(sqlite3)
 # fixversion_TARGETS=(sqlite3)
