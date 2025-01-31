@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 ##
 # Pre-requirements:
@@ -22,7 +23,9 @@ export MONITOR="$SHARED/monitor"
 mkdir -p "$MONITOR"
 
 # WHATWEADD: filter CFG for pathfuzzer
+echo "========================== out of this branch ==================="
 if [ "$FUZZER" == *"fixversion"* ]; then
+    echo "========================== in this branch ==================="
     (
         # copy everything of /magma_out/afl to /magma_shared/afl
         cp -r "$OUT/afl" "$SHARED/afl"
