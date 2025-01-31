@@ -15,9 +15,7 @@ fi
 pushd "$FUZZER/repo"
 git submodule update --init fuzzing_support/path-cov/
 pushd fuzzing_support/path-cov/
-# git pull origin master
-git checkout fx-no-tail-opt
-git pull origin fx-no-tail-opt
+git checkout bb900e8
 cargo build --release
 cp target/release/libpath_reduction.so ../../
 popd
