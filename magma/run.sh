@@ -32,9 +32,12 @@ if [[ "$FUZZER" =~ "fixversion" ]]; then
         g++ -I"$FUZZER/repo/fuzzing_support" "$FUZZER/repo/fuzzing_support/convert.cpp" -o "$OUT/convert"
         bash $FUZZER/generateCFG.sh
     )
-    # copy FG back to /magma_out/afl
+    # copy CFG back to /magma_out/afl
     cp $SHARED/afl/${PROGRAM}_cfg.bin $OUT/afl/${PROGRAM}_cfg.bin
-    # sth like cfg_${PROGRAM}.txt has been copied to $SHARED already
+    # copt sth like cfg_${PROGRAM}.txt has been copied to $OUT 
+    cp $SHARED/afl/cfg_${PROGRAM}.txt $OUT/afl/cfg_${PROGRAM}.txt 
+    cp $SHARED/afl/callmap_${PROGRAM}.txt $OUT/afl/callmap_${PROGRAM}.txt 
+    cp $SHARED/afl/${PROGRAM}_function_list.txt $OUT/afl/${PROGRAM}_function_list.txt 
 fi
 
 # change working directory to somewhere accessible by the fuzzer and target
@@ -105,4 +108,6 @@ fi
 
 echo "Campaign terminated at $(date '+%F %R')"
 
+set +e
 kill $(jobs -p)
+set -e
