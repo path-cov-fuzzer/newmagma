@@ -85,7 +85,9 @@ FUZZERS=(fixversion)
 # fixversion_TARGETS=(libpng libsndfile libtiff libxml2 lua openssl php sqlite3)
 
 # aflplusplus_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3)
-fixversion_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3 openssl lua) 
+# fixversion_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3 openssl lua) 
+
+fixversion_TARGETS=(php) 
 
 # aflplusplus_TARGETS=(base64 md5sum uniq who libpng libsndfile php)
 # fixversion_TARGETS=(base64 md5sum uniq who libpng libsndfile php)

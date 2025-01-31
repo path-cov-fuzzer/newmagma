@@ -11,6 +11,7 @@ pushd $OUT
 export FUZZERAUX=$FUZZER
 export FUZZER=$FUZZER/repo
 
+# filter cfg.txt and callmap.txt
 for each_PROGRAM in "${PROGRAMS[@]}"
 do
 
@@ -32,6 +33,7 @@ done
 export FUZZER=$FUZZERAUX
 
 
+# generate cfg binary
 for each_PROGRAM in "${PROGRAMS[@]}"
 do
 

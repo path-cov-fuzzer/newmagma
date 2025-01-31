@@ -59,10 +59,4 @@ export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
 #       itself is the fuzz target. In the case of Angora, we might need to
 #       replace $OUT by $OUT/fast and $OUT/track, for instance.
 
-# generate CFG of PROGRAM
-(
-    export OUT="$OUT/afl"
-    g++ -I"$FUZZER/repo/fuzzing_support" "$FUZZER/repo/fuzzing_support/convert.cpp" -o "$OUT/convert"
-    bash $FUZZER/generateCFG.sh
-)
 

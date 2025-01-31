@@ -21,9 +21,25 @@ LOGSIZE=${LOGSIZE:-$[1 << 20]}
 export MONITOR="$SHARED/monitor"
 mkdir -p "$MONITOR"
 
+# WHATWEADD: filter CFG for pathfuzzer
+if [ "$FUZZER" == *"fixversion"* ]; then
+    (
+        # copy everything of /magma_out/afl to /magma_shared/afl
+        cp -r "$OUT/afl" "$SHARED/afl"
+        # generate CFG of PROGRAM to /magma_shared/afl
+        export OUT="$SHARED/afl"
+        g++ -I"$FUZZER/repo/fuzzing_support" "$FUZZER/repo/fuzzing_support/convert.cpp" -o "$OUT/convert"
+        bash $FUZZER/generateCFG.sh
+    )
+    # copy FG back to /magma_out/afl
+    cp $SHARED/afl/${PROGRAM}_cfg.bin $OUT/afl/${PROGRAM}_cfg.bin
+    # sth like cfg_${PROGRAM}.txt has been copied to $SHARED already
+fi
+
 # change working directory to somewhere accessible by the fuzzer and target
 cd "$SHARED"
 
+# WHATWEADD: skip seeds-filtering for LAVAM PUTs ----------------------------------------------- start
 if [[ "$TARGET" != *"base64"* ]] && [[ "$TARGET" != *"md5sum"* ]] && [[ "$TARGET" != *"uniq"* ]] && [[ "$TARGET" != *"who"* ]]; then
 	# prune the seed corpus for any fault-triggering test-cases
 	for seed in "$TARGET/corpus/$PROGRAM"/*; do
@@ -36,6 +52,7 @@ if [[ "$TARGET" != *"base64"* ]] && [[ "$TARGET" != *"md5sum"* ]] && [[ "$TARGET
 		fi
 	done
 fi
+# WHATWEADD: skip seeds-filtering for LAVAM PUTs ----------------------------------------------- end
 
 shopt -s nullglob
 seeds=("$1"/*)
