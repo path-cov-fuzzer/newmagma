@@ -24,16 +24,18 @@ mkdir -p "$MONITOR"
 # change working directory to somewhere accessible by the fuzzer and target
 cd "$SHARED"
 
-# prune the seed corpus for any fault-triggering test-cases
-for seed in "$TARGET/corpus/$PROGRAM"/*; do
-    out="$("$MAGMA"/runonce.sh "$seed")"
-    code=$?
+if [[ "$TARGET" != *"base64"* ]] && [[ "$TARGET" != *"md5sum"* ]] && [[ "$TARGET" != *"uniq"* ]] && [[ "$TARGET" != *"who"* ]]; then
+	# prune the seed corpus for any fault-triggering test-cases
+	for seed in "$TARGET/corpus/$PROGRAM"/*; do
+		out="$("$MAGMA"/runonce.sh "$seed")"
+		code=$?
 
-    if [ $code -ne 0 ]; then
-        echo "$seed: $out"
-        rm "$seed"
-    fi
-done
+		if [ $code -ne 0 ]; then
+			echo "$seed: $out"
+			rm "$seed"
+		fi
+	done
+fi
 
 shopt -s nullglob
 seeds=("$1"/*)
