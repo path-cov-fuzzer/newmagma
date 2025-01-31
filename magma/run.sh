@@ -25,7 +25,7 @@ mkdir -p "$MONITOR"
 # WHATWEADD: filter CFG for pathfuzzer
 echo "========================== out of this branch ==================="
 echo "FUZZER = $FUZZER"
-if [ "$FUZZER" =~ "fixversion" ]; then
+if [[ "$FUZZER" =~ "fixversion" ]]; then
     echo "========================== in this branch ==================="
     (
         # copy everything of /magma_out/afl to /magma_shared/afl
