@@ -30,7 +30,7 @@ REPEAT=1
 # [TIMEOUT]: time to run each campaign. This variable supports one-letter
 # suffixes to indicate duration (s: seconds, m: minutes, h: hours, d: days)
 # (default: 1m)
-TIMEOUT=5m
+TIMEOUT=1h
 
 # [POLL]: time (in seconds) between polls (default: 5)
 POLL=5
@@ -73,7 +73,7 @@ CACHE_ON_DISK=1
 # FUZZERS: an array of fuzzer names (from magma/fuzzers/*) to evaluate
 # FUZZERS=(aflplusplus)
 # FUZZERS=(fixversion)
-FUZZERS=(fixversion)
+FUZZERS=(aflplusplus fixversion)
 # FUZZERS=(clang)
 
 # [fuzzer_TARGETS]: an array of target names (from magma/targets/*) to fuzz with
@@ -85,7 +85,9 @@ FUZZERS=(fixversion)
 # fixversion_TARGETS=(libpng libsndfile libtiff libxml2 lua openssl php sqlite3)
 
 # aflplusplus_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3)
-fixversion_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3 openssl lua) 
+
+aflplusplus_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3 lua) 
+fixversion_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3 lua) 
 
 # fixversion_TARGETS=(php) 
 
