@@ -46,7 +46,6 @@ cd "$SHARED"
 # WHATWEADD: skip seeds-filtering for LAVAM PUTs ----------------------------------------------- start
 set +e
 if [[ "$TARGET" != *"base64"* ]] && [[ "$TARGET" != *"md5sum"* ]] && [[ "$TARGET" != *"uniq"* ]] && [[ "$TARGET" != *"who"* ]]; then
-    echo "============= 1 ================"
 	# prune the seed corpus for any fault-triggering test-cases
 	for seed in "$TARGET/corpus/$PROGRAM"/*; do
 		out="$("$MAGMA"/runonce.sh "$seed")"
@@ -65,7 +64,6 @@ shopt -s nullglob
 seeds=("$1"/*)
 shopt -u nullglob
 if [ ${#seeds[@]} -eq 0 ]; then
-    echo "============= 2 ================"
     echo "No seeds remaining! Campaign will not be launched."
     exit 1
 fi
@@ -75,17 +73,14 @@ fi
 rm -f "$MONITOR/tmp"*
 polls=("$MONITOR"/*)
 if [ ${#polls[@]} -eq 0 ]; then
-    echo "============= 3 ================"
     counter=0
 else
-    echo "============= 4 ================"
     timestamps=($(sort -n < <(basename -a "${polls[@]}")))
     last=${timestamps[-1]}
     counter=$(( last + POLL ))
 fi
 
 while true; do
-    echo "============= 5 ================"
     "$OUT/monitor" --dump row > "$MONITOR/tmp"
     if [ $? -eq 0 ]; then
         mv "$MONITOR/tmp" "$MONITOR/$counter"
