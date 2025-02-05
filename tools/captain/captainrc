@@ -30,7 +30,7 @@ REPEAT=1
 # [TIMEOUT]: time to run each campaign. This variable supports one-letter
 # suffixes to indicate duration (s: seconds, m: minutes, h: hours, d: days)
 # (default: 1m)
-TIMEOUT=1h
+TIMEOUT=6h
 
 # [POLL]: time (in seconds) between polls (default: 5)
 POLL=5
@@ -86,8 +86,11 @@ FUZZERS=(aflplusplus fixversion)
 
 # aflplusplus_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3)
 
-aflplusplus_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3 lua openssl) 
-fixversion_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3 lua openssl) 
+# aflplusplus_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3 lua openssl) 
+# fixversion_TARGETS=(base64 md5sum uniq who libpng libsndfile libtiff libxml2 php sqlite3 lua openssl) 
+
+aflplusplus_TARGETS=(base64 md5sum uniq who) 
+fixversion_TARGETS=(base64 md5sum uniq who) 
 
 # fixversion_TARGETS=(openssl) 
 
