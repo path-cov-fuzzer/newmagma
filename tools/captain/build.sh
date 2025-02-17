@@ -56,7 +56,7 @@ docker build -t "$IMG_NAME" \
     $mode_flag $isan_flag $harden_flag \
     -f "$MAGMA/docker/Dockerfile.clang" "$MAGMA"
 
-elif [ "$FUZZER" == "aflplusplus" ] || [ "$FUZZER" == "onlyinstrument" ] || [ "$FUZZER" == "writetoshm" ] || [ "$FUZZER" == "pathfuzzerfullpath" ] || [ "$FUZZER" == "for_debug" ]; then
+elif [ "$FUZZER" == "aflplusplus" ] || [ "$FUZZER" == "onlyinstrument" ] || [ "$FUZZER" == "writetoshm" ] || [ "$FUZZER" == "pathfuzzerfullpath" ] || [ "$FUZZER" == "forbug" ]; then
 
 docker build -t "$IMG_NAME" \
     --build-arg fuzzer_name="$FUZZER" \
